@@ -1,14 +1,18 @@
 'use client'
-import React, { useState } from "react";
+import { ApiServices } from "@/lib/apiServices";
+import { formatPrice } from "@/lib/data";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { PropertyListCard } from "./PropertyListCard";
 
-const regions = [
-  "Delhi South West",
-  "East Delhi",
-  "North Delhi",
-  "Central Delhi",
-  "South Delhi",
-  "West Delhi",
-];
+// const regions = [
+//   "Delhi South West",
+//   "East Delhi",
+//   "North Delhi",
+//   "Central Delhi",
+//   "South Delhi",
+//   "West Delhi",
+// ];
 
 type DemandCategory = { name: string; percent: string };
 type DemandRegion = {
@@ -46,31 +50,50 @@ const demandData: DemandData = {
 };
 
 export default function DemandPanel() {
-  const [activeRegion, setActiveRegion] = useState(regions[0]);
-  const data: DemandRegion = demandData[activeRegion] || demandData[regions[0]];
-
+  const [activeRegion, setActiveRegion] = useState();
+  const [regions, setRegions]: any = useState();
+  const [propertyLists, setPropertyLists]: any = useState();
+  //const data: DemandRegion = demandData[activeRegion] || demandData[regions[0]];
+  const data = {};
+  const getLocationList = async () => {
+    const response = await ApiServices.getDistinctLocationList();
+    getPropertyBasedOnRegion(response?.[0]);
+    setActiveRegion(response?.[0]);
+    setRegions(response)
+  }
+  const getPropertyBasedOnRegion = async (location: string) => {
+    const responseBasedONRegions = await ApiServices.getPropertyBasedOnLocation(location);
+    console.log(responseBasedONRegions)
+    setPropertyLists(responseBasedONRegions);
+  }
+  useEffect(() => {
+    getLocationList()
+  }, [])
   return (
     <div className="py-10 bg-white">
       <div className="container mx-auto px-4">
-        <div className="flex items-center mb-6">
+        <div className="md:flex items-center mb-6">
           <h2 className="text-2xl font-poppins font-bold text-[#0A3C7D] flex items-center mr-4">
-            Demand in Delhi
+            Demand in Lucknow
             <span className="ml-2 text-base text-gray-400" title="Where are buyers searching in Delhi?">ℹ️</span>
           </h2>
-          <div className="flex flex-wrap gap-2 ml-6">
-            {regions.map((region) => (
+          <div className="flex flex-wrap gap-2 md:ml-6 mt-3 md:mt-0">
+            {regions && regions?.map((region: any) => (
               <button
                 key={region}
                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${activeRegion === region ? "bg-[#0A3C7D] text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
-                onClick={() => setActiveRegion(region)}
+                onClick={() => {setActiveRegion(region);getPropertyBasedOnRegion(region)}}
               >
                 {region}
               </button>
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {Object.entries(data).map(([category, list]) => (
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            {propertyLists && propertyLists?.map((property: any, index: number) => {
+             return <PropertyListCard property={property} key={index}/>
+            })}
+          {/* {Object.entries(data).map(([category, list]) => (
             <div key={category} className="bg-[#F6FAFF] rounded-xl shadow p-6 flex flex-col">
               <h3 className="font-semibold text-lg text-[#0A3C7D] mb-4">{category}</h3>
               <ol className="mb-4">
@@ -84,7 +107,7 @@ export default function DemandPanel() {
               </ol>
               <button className="text-primary font-medium hover:underline text-sm mt-auto">View all 5 Localities</button>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

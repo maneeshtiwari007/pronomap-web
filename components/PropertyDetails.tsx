@@ -309,7 +309,6 @@ export default function PropertyDetailsComponent({data}:any) {
         </div>
       </main>
       
-      <Footer />
     </div>
   );
 }
@@ -365,7 +364,6 @@ function PropertyDetailsLoading() {
         </div>
       </main>
       
-      <Footer />
     </div>
   );
 }
@@ -392,7 +390,6 @@ function PropertyDetailsError() {
         </div>
       </main>
       
-      <Footer />
     </div>
   );
 }
