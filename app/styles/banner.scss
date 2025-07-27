@@ -1,0 +1,102 @@
+@use './breakpoints.scss' as *;
+
+.banner-section {
+    position: relative;
+
+    &::before {
+        content: " ";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-image: url('../../assets/images/pattern/banner-pattern1.jpg');
+        // background-size: contain;
+        background-position: center;
+        background-repeat: repeat;
+    }
+
+    .bg-skew {
+        position: relative;
+
+        &::before {
+            @include lg {
+                content: " ";
+                position: absolute;
+                display: block;
+                width: 166px;
+                height: 100%;
+                top: 0;
+                left: 0;
+                // background: var(--white);
+                background-image: url('../../assets/images/pattern/banner-pattern1.jpg');
+                // background-size: cover;
+                background-position: center;
+                background-repeat: repeat;
+                transform-origin: top left;
+                -ms-transform: skew(-15deg, 0deg);
+                -webkit-transform: skew(-15deg, 0deg);
+                transform: skew(-15deg, 0deg);
+            }
+
+            @media screen and (min-width:2100px) {
+                width: 200px;
+            }
+        }
+
+
+        img {
+            &.img-fluid {
+                max-height: 450px;
+
+                @include lg {
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+
+    .banner-description {
+        width: 100%;
+        margin-left: auto;
+        margin-right: 0;
+
+        @include lg {
+            max-width: 900px;
+        }
+
+        @include xl {
+            max-width: 770px;
+        }
+
+        &.style-2 {
+            @include lg {
+                max-width: 900px;
+            }
+
+            @include xl {
+                max-width: 630px;
+            }
+        }
+    }
+
+    .sheild-check {
+        position: absolute;
+        max-width: 50px;
+        top: -25px;
+        right: 25px;
+
+        @include lg {
+            max-width: 100px;
+            bottom: -50px;
+            left: -50px;
+            top: auto;
+            right: auto;
+        }
+    }
+}
+
+.color-seconder-500 {
+    color: var(--tw-color-secondary-500);
+}
