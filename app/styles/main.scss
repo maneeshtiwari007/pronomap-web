@@ -1,0 +1,291 @@
+@use "./breakpoints.scss" as *;
+@use "./hero-section.scss" as *;
+@use "./banner.scss" as *;
+@use "./footer.scss" as *;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+    --background: #ffffff;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+    --fontFamily-instrument: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --fontFamily-poppins: "Poppins", Helvetica, Arial, sans-serif;
+    --fontFamily-montserrat: "Montserrat", Helvetica, Arial, sans-serif;
+    /* === Primary Colors === */
+    --tw-color-primary: #ffd427;
+    --tw-color-primary-50: #fffbf1;
+    --tw-color-primary-100: #ffd427;
+    --tw-color-primary-200: #ffc703;
+    --tw-color-primary-300: #fcc429;
+    --tw-color-primary-400: #fed328;
+    --tw-color-primary-500: #e7ba1e;
+    --tw-color-primary-600: #f8f8f8;
+    --tw-color-primary-700: #ffd427;
+    --tw-color-primary-800: #ffeda4;
+    --tw-color-primary-900: #eec01e;
+
+    /* === Secondary Colors === */
+    --tw-color-secondary: #707176;
+    --tw-color-secondary-50: #f8f8f8;
+    --tw-color-secondary-100: #808080;
+    --tw-color-secondary-200: #6b6969;
+    --tw-color-secondary-300: #3a3a3a;
+    --tw-color-secondary-400: #34373f;
+    --tw-color-secondary-500: #3c3c14;
+    --tw-color-secondary-600: #464646;
+    --tw-color-secondary-700: #707176;
+    --tw-color-secondary-800: #252010;
+    --tw-color-secondary-900: #3f3f3f;
+    --tw-color-secondary-950: #6b5b23;
+
+    /* === Success Colors === */
+    --tw-color-success: #06b92d;
+    --tw-color-success-50: #ecf4ff;
+    --tw-color-success-100: #16af6d;
+    --tw-color-success-200: #2edf0a;
+    --tw-color-success-300: #88e417;
+
+    /* === Muted Colors === */
+    --tw-color-muted: #67686c;
+    --tw-color-muted-50: #e7ba1e;
+    --tw-color-muted-100: #67686c;
+    --tw-color-muted-150: #f8f8f8;
+    --tw-color-muted-200: #716f6f;
+    --tw-color-muted-300: #858892;
+    --tw-color-muted-400: #3e3615;
+    --tw-color-muted-500: #eeeaca;
+
+    /* === Accent Colors === */
+    --tw-color-accent: #fffbf1;
+    --tw-color-accent-50: #ffeda4;
+    --tw-color-accent-100: #fffbf1;
+    --tw-color-accent-200: #f8f8f8;
+
+    /* === Destructive Colors === */
+    --tw-color-destructive: #0f0f0f;
+    --tw-color-destructive-50: #0f0f0f;
+    --tw-color-destructive-100: #151207;
+    --tw-color-destructive-200: #140a0a;
+    --tw-color-destructive-300: #0c0606;
+
+    /* === Neutral Colors === */
+    --tw-color-neutral: #767676;
+    --tw-color-neutral-50: #d9d9d9;
+    --tw-color-neutral-100: #b4b4b4;
+    --tw-color-neutral-200: #767676;
+    --tw-color-neutral-300: #3a3a3a;
+    --tw-color-neutral-400: #6f6b6b;
+    --tw-color-neutral-500: #777777;
+    --tw-color-neutral-600: #cbcbd9;
+    --tw-color-neutral-700: #dde1f2;
+
+    /* === Dark Colors === */
+    --tw-color-dark: #1f3b5b;
+    --tw-color-dark-50: #191d23;
+    --tw-color-dark-100: #1f3b5b;
+    --tw-color-dark-200: #262111;
+    --tw-color-dark-300: #3b3737;
+    --tw-color-dark-400: #2f2911;
+    --tw-color-dark-500: #161922;
+    --tw-color-dark-600: #3a3a25;
+    --tw-color-dark-700: #2c1414;
+
+    /* === Gray Colors === */
+    --tw-color-gray: #808080;
+    --tw-color-gray-25: #FFFDF6;
+    --tw-color-gray-50: #f9fafb;
+    --tw-color-gray-75: #E0E7F3;
+    --tw-color-gray-100: #f3f4f6;
+    --tw-color-gray-125: #D2CEBF;
+    --tw-color-gray-150: #D0D5DD;
+    --tw-color-gray-200: #767676;
+    --tw-color-gray-225: #dce1e8;
+    --tw-color-gray-250: #b8c0cc;
+    --tw-color-gray-275: #dedede;
+    --tw-color-gray-300: #808080;
+    --tw-color-gray-400: #34373f;
+    --tw-color-gray-450: #383d4a;
+    --tw-color-gray-500: #515151;
+    --tw-color-gray-550: #e4e4e4;
+    --tw-color-gray-600: #211c0c;
+    --tw-color-gray-650: #5b5b5b;
+    --tw-color-gray-700: #9d9c9a;
+    --tw-color-gray-750: #d0d0d0;
+
+    /* === Brown Colors === */
+    --tw-color-brown: #473b14;
+    --tw-color-brown-50: #251f0c;
+    --tw-color-brown-100: #302b11;
+    --tw-color-brown-200: #251f0c;
+    --tw-color-brown-300: #473b14;
+    --tw-color-brown-400: #251f0c;
+    --tw-color-brown-500: #1e1807;
+    --tw-color-brown-600: #4e4423;
+    --tw-color-brown-700: #474747;
+    --tw-color-brown-800: #937826;
+
+    /* === White Colors === */
+    --tw-color-white: #ffffff;
+    --tw-color-white-50: #f9f9f9;
+
+    /* === Blue Colors === */
+    --tw-color-blue: #64748b;
+    --tw-color-blue-50: #182449;
+    --tw-color-blue-100: #3a3d4a;
+    --tw-color-blue-200: #64748b;
+    --tw-color-blue-300: #202020;
+    --tw-color-blue-400: #47158c;
+    --tw-color-blue-500: #3071ff;
+    --tw-color-blue-600: #248ac9;
+    --tw-color-blue-700: #51abff;
+    --tw-color-blue-800: #8eaec2;
+    --tw-color-blue-900: #17223f;
+    --tw-color-blue-950: #1a2341;
+
+    /* === Black Colors === */
+    --tw-color-black: #000000;
+    --tw-color-black-rgb: 0, 0, 0;
+    --tw-color-black-50: #000000;
+    --tw-color-black-100: #0c0606;
+    --tw-color-black-200: #0a0a0a;
+    --tw-color-black-300: #242426;
+
+    /* === Light Colors === */
+    --tw-color-light: #fffbf1;
+    --tw-color-light-50: #fffbf1;
+    --tw-color-light-100: #f8f8f8;
+    --tw-color-light-200: #ffeda4;
+
+    /* === Green Colors === */
+    --tw-color-green: #06b92d;
+    --tw-color-green-100: #16af6d;
+    --tw-color-green-200: #08cf15;
+
+    /* === Yellow Colors === */
+    --tw-color-yellow: #f6ff7b;
+    --tw-color-yellow-100: #fcf7e6;
+    --tw-color-yellow-150: #fff8dd;
+
+    /* === Red Colors === */
+    --tw-color-red: #ff4314;
+    --tw-color-red-100: #ff7147;
+
+    /* === Violet Colors === */
+    --tw-color-violet: #cd03ff;
+    --tw-color-violet-100: #ae51ff;
+    --tw-color-violet-200: #8226c8;
+    --tw-color-violet-300: #c026c8;
+
+    /* === Gold Colors === */
+    --tw-color-gold: #f4c74b;
+    --tw-color-gold-100: #c58d12;
+    --tw-color-gold-200: #cba622;
+    --tw-color-gold-300: #52521e;
+    --tw-color-gold-400: #27270d;
+    --tw-color-gold-500: #66665c;
+    --tw-color-gold-600: #78784b;
+    --tw-color-gold-700: #3b3b14;
+    --tw-color-gold-800: #edeacc;
+
+    /* === Custom Colors === */
+    --tw-color-custom-dark: #2f2a2a;
+
+    /* === UI Tokens === */
+    --tw-color-background: var(--background);
+    --tw-color-foreground: var(--foreground);
+    --tw-color-card: var(--tw-color-white);
+    --tw-color-card-foreground: var(--card-foreground);
+    --tw-color-popover: var(--popover);
+    --tw-color-popover-foreground: var(--popover-foreground);
+    --tw-color-border: var(--border);
+    --tw-color-input: var(--input);
+    --tw-color-ring: var(--ring);
+
+    /* === Chart Colors === */
+    --tw-color-chart-1: var(--chart-1);
+    --tw-color-chart-2: var(--chart-2);
+    --tw-color-chart-3: var(--chart-3);
+    --tw-color-chart-4: var(--chart-4);
+    --tw-color-chart-5: var(--chart-5);
+
+    /* === Shadow Colors === */
+    --tw-shadow-color: #17223f;
+    --tw-shadow-color-light: #1a2341;
+    --tw-shadow-color-medium: rgba(0, 0, 0, 0.5);
+    --tw-shadow-color-dark: rgba(0, 0, 0, 0.75);
+}
+
+@layer base {
+    :root {
+         --background: #ffffff; 
+        --foreground: var(--tw-color-dark);
+        --card: var(--tw-color-white);
+        --card-foreground: var(--tw-color-gray);
+        --popover: var(--tw-color-white);
+        --popover-foreground: var(--tw-color-muted);
+        --primary: var(--tw-color-primary);
+        --primary-foreground: var(--tw-color-black);
+        --secondary: var(--tw-color-secondary);
+        --secondary-foreground: var(--tw-color-white);
+        --success: var(--tw-color-success);
+        --muted: var(--tw-color-muted);
+        --muted-foreground: var(--tw-color-gray);
+        --accent: var(--tw-color-accent);
+        --accent-foreground: var(--tw-color-dark);
+        --destructive: var(--tw-color-destructive);
+        --destructive-foreground: var(--tw-color-light);
+        --neutral: var(--tw-color-neutral);
+        --dark: var(--tw-color-dark);
+        --gray: var(--tw-color-gray);
+        --brown: var(--tw-color-brown);
+        --blue: var(--tw-color-blue);
+        --black: var(--tw-color-black);
+        --light: var(--tw-color-light);
+        --white: var(--tw-color-white);
+        --border: #e7e5e4;
+        --transparent: transparent;
+        --input: #e7e5e4;
+        --input-2: var(--tw-color-brown);
+        --ring: 0 0% 3.9%;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+        --radius: 0.5rem;
+        --radius-1: 1rem;
+        --border-white: var(--tw-color-white);
+
+        --black: #000000ff;
+        --indian-red: #ea5c5eff;
+        --black-2: #000000ff;
+        --ultra-violet: #525470ff;
+        --space-cadet: #202142ff;
+        /*For Header*/
+        --header-background-color: #181c32;
+    }
+
+    /* 
+    * Common Class
+    */
+    @include md {
+        .d-md-block {
+            display: block !important;
+        }
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: var(--fontFamily-instrument);
+    }
+}

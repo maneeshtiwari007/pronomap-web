@@ -1,0 +1,409 @@
+[
+    {
+        "title": "Shalimar Grand Residency",
+        "description": "Luxurious 3 BHK apartment in prime location with modern amenities and spacious interiors.",
+        "price": 9200000,
+        "pricePerSqFt": 8500,
+        "propertyType": "3 BHK",
+        "location": "Gomti Nagar",
+        "address": "Shalimar Grand Residency, Gomti Nagar, Lucknow",
+        "pincode": "226010",
+        "area": 1680,
+        "floors": 4,
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "builder": "Shalimar Group",
+        "possessionDate": "Dec 2023",
+        "latitude": 26.8467,
+        "longitude": 80.9462,
+        "featuredImage": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=800&h=450",
+        "images": [
+            "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=800&h=450",
+            "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=800&h=450",
+            "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=800&h=450"
+        ],
+        "amenities": [
+            "Gym",
+            "Swimming Pool",
+            "Club House",
+            "Children's Play Area",
+            "24x7 Security"
+        ],
+        "isFeatured": true,
+        "isVerified": true,
+        "tags": [
+            "Premium",
+            "RERA Registered"
+        ],
+        "nearbyPlaces": {
+            "schools": [
+                {
+                    "name": "City Montessori School",
+                    "distance": 0.8,
+                    "lat": 26.8459,
+                    "lng": 80.948
+                }
+            ],
+            "hospitals": [
+                {
+                    "name": "Medanta Hospital",
+                    "distance": 1.2,
+                    "lat": 26.8482,
+                    "lng": 80.9492
+                }
+            ],
+            "malls": [
+                {
+                    "name": "Phoenix Palassio Mall",
+                    "distance": 1.5,
+                    "lat": 26.8497,
+                    "lng": 80.9432
+                }
+            ]
+        },
+        "createdAt": "2025-07-26T07:39:21.815Z",
+        "id": 1,
+        "isDeleted": false,
+        "deletedAt": null
+    },
+    {
+        "title": "Royal Elegance Towers",
+        "description": "Spacious 4 BHK apartment with premium finishes and panoramic city views.",
+        "price": 12000000,
+        "pricePerSqFt": 9800,
+        "propertyType": "4 BHK",
+        "location": "Indira Nagar",
+        "address": "Royal Elegance Towers, Indira Nagar, Lucknow",
+        "pincode": "226016",
+        "area": 2100,
+        "floors": 7,
+        "bedrooms": 4,
+        "bathrooms": 3,
+        "builder": "Eldeco Group",
+        "possessionDate": "Mar 2024",
+        "latitude": 26.877,
+        "longitude": 80.9755,
+        "featuredImage": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&h=500",
+        "images": [
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&h=500"
+        ],
+        "amenities": [
+            "Gym",
+            "Swimming Pool",
+            "Club House",
+            "Party Hall",
+            "Tennis Court",
+            "24x7 Security"
+        ],
+        "isFeatured": true,
+        "isVerified": true,
+        "tags": [
+            "Featured",
+            "RERA Registered"
+        ],
+        "nearbyPlaces": {
+            "schools": [
+                {
+                    "name": "Delhi Public School",
+                    "distance": 1.1,
+                    "lat": 26.879,
+                    "lng": 80.9785
+                }
+            ],
+            "hospitals": [
+                {
+                    "name": "Sahara Hospital",
+                    "distance": 0.7,
+                    "lat": 26.875,
+                    "lng": 80.9735
+                }
+            ],
+            "malls": [
+                {
+                    "name": "Lulu Mall",
+                    "distance": 2.3,
+                    "lat": 26.881,
+                    "lng": 80.9825
+                }
+            ]
+        },
+        "createdAt": "2025-07-26T07:39:21.816Z",
+        "id": 2,
+        "isDeleted": false,
+        "deletedAt": null
+    },
+    {
+        "title": "Omaxe Heights",
+        "description": "Contemporary 2 BHK apartment with excellent amenities in a premium neighborhood.",
+        "price": 6500000,
+        "pricePerSqFt": 7200,
+        "propertyType": "2 BHK",
+        "location": "Gomti Nagar",
+        "address": "Omaxe Heights, Gomti Nagar, Lucknow",
+        "pincode": "226010",
+        "area": 1350,
+        "floors": 5,
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "builder": "Omaxe",
+        "possessionDate": "Jun 2024",
+        "latitude": 26.8595,
+        "longitude": 80.951,
+        "featuredImage": "https://images.unsplash.com/photo-1493246318656-5bfd4cfb29b8?auto=format&fit=crop&w=800&h=500",
+        "images": [
+            "https://images.unsplash.com/photo-1493246318656-5bfd4cfb29b8?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&h=500"
+        ],
+        "amenities": [
+            "Gym",
+            "Swimming Pool",
+            "Club House",
+            "Children's Play Area",
+            "24x7 Security"
+        ],
+        "isFeatured": true,
+        "isVerified": true,
+        "tags": [
+            "New Launch",
+            "RERA Registered"
+        ],
+        "nearbyPlaces": {
+            "schools": [
+                {
+                    "name": "Seth M.R. Jaipuria School",
+                    "distance": 1.5,
+                    "lat": 26.8615,
+                    "lng": 80.953
+                }
+            ],
+            "hospitals": [
+                {
+                    "name": "Chandan Hospital",
+                    "distance": 0.9,
+                    "lat": 26.8575,
+                    "lng": 80.949
+                }
+            ],
+            "malls": [
+                {
+                    "name": "Wave Mall",
+                    "distance": 1.2,
+                    "lat": 26.8625,
+                    "lng": 80.955
+                }
+            ]
+        },
+        "createdAt": "2025-07-26T07:39:21.816Z",
+        "id": 3,
+        "isDeleted": false,
+        "deletedAt": null
+    },
+    {
+        "title": "Ansal Woodbury Villas",
+        "description": "Exclusive villa with high-end finishes, private garden, and premium amenities.",
+        "price": 21000000,
+        "pricePerSqFt": 12500,
+        "propertyType": "Villa",
+        "location": "Sushant Golf City",
+        "address": "Ansal Woodbury Villas, Sushant Golf City, Lucknow",
+        "area": 3200,
+        "floors": 2,
+        "bedrooms": 4,
+        "bathrooms": 4,
+        "builder": "Ansal",
+        "possessionDate": "Sep 2023",
+        "latitude": 26.7769,
+        "longitude": 81.024,
+        "featuredImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&h=500",
+        "images": [
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&h=500"
+        ],
+        "amenities": [
+            "Private Garden",
+            "Golf View",
+            "Club House",
+            "Gym",
+            "Swimming Pool",
+            "24x7 Security"
+        ],
+        "isFeatured": true,
+        "isVerified": true,
+        "tags": [
+            "Featured",
+            "Luxury",
+            "Golf View"
+        ],
+        "nearbyPlaces": {
+            "schools": [
+                {
+                    "name": "GD Goenka Public School",
+                    "distance": 2,
+                    "lat": 26.779,
+                    "lng": 81.027
+                }
+            ],
+            "hospitals": [
+                {
+                    "name": "Apollo Hospital",
+                    "distance": 2.5,
+                    "lat": 26.781,
+                    "lng": 81.029
+                }
+            ],
+            "malls": [
+                {
+                    "name": "Esplanade One Mall",
+                    "distance": 1.8,
+                    "lat": 26.775,
+                    "lng": 81.022
+                }
+            ]
+        },
+        "createdAt": "2025-07-26T07:39:21.816Z",
+        "id": 4,
+        "isDeleted": false,
+        "deletedAt": null
+    },
+    {
+        "title": "ATS One Hamlet",
+        "description": "Premium gated community offering sophisticated 3 BHK apartments with world-class amenities.",
+        "price": 12500000,
+        "pricePerSqFt": 9200,
+        "propertyType": "3 BHK",
+        "location": "Shaheed Path",
+        "address": "ATS One Hamlet, Shaheed Path, Lucknow",
+        "area": 1850,
+        "floors": 18,
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "builder": "ATS Group",
+        "possessionDate": "Aug 2024",
+        "latitude": 26.7955,
+        "longitude": 80.953,
+        "featuredImage": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&h=500",
+        "images": [
+            "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=800&h=500"
+        ],
+        "amenities": [
+            "Gym",
+            "Swimming Pool",
+            "Club House",
+            "Indoor Games",
+            "Banquet Hall",
+            "Tennis Court",
+            "24x7 Security"
+        ],
+        "isFeatured": true,
+        "isVerified": true,
+        "tags": [
+            "Premium",
+            "RERA Registered"
+        ],
+        "nearbyPlaces": {
+            "schools": [
+                {
+                    "name": "DPS School",
+                    "distance": 2,
+                    "lat": 26.7975,
+                    "lng": 80.955
+                }
+            ],
+            "hospitals": [
+                {
+                    "name": "Medanta Hospital",
+                    "distance": 3.5,
+                    "lat": 26.7935,
+                    "lng": 80.951
+                }
+            ],
+            "malls": [
+                {
+                    "name": "Phoenix Palassio",
+                    "distance": 4,
+                    "lat": 26.7995,
+                    "lng": 80.958
+                }
+            ]
+        },
+        "createdAt": "2025-07-26T07:39:21.816Z",
+        "id": 8,
+        "isDeleted": false,
+        "deletedAt": null
+    },
+    {
+        "title": "Godrej Golf Links",
+        "description": "Premium villas and apartments in Lucknow's first golf-centric township.",
+        "price": 18000000,
+        "pricePerSqFt": 10800,
+        "propertyType": "Villa",
+        "location": "Sushant Golf City",
+        "address": "Godrej Golf Links, Sushant Golf City, Lucknow",
+        "area": 2500,
+        "floors": 2,
+        "bedrooms": 4,
+        "bathrooms": 4,
+        "builder": "Godrej Properties",
+        "possessionDate": "Oct 2024",
+        "latitude": 26.769,
+        "longitude": 81.018,
+        "featuredImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&h=500",
+        "images": [
+            "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&h=500",
+            "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=800&h=500"
+        ],
+        "amenities": [
+            "Golf Course",
+            "Club House",
+            "Gym",
+            "Swimming Pool",
+            "Tennis Court",
+            "Kids Play Area",
+            "24x7 Security"
+        ],
+        "isFeatured": true,
+        "isVerified": true,
+        "tags": [
+            "Luxury",
+            "Golf View",
+            "Premium"
+        ],
+        "nearbyPlaces": {
+            "schools": [
+                {
+                    "name": "GD Goenka School",
+                    "distance": 1.8,
+                    "lat": 26.771,
+                    "lng": 81.02
+                }
+            ],
+            "hospitals": [
+                {
+                    "name": "Apollomedics Hospital",
+                    "distance": 3,
+                    "lat": 26.767,
+                    "lng": 81.016
+                }
+            ],
+            "malls": [
+                {
+                    "name": "Crown Mall",
+                    "distance": 2.5,
+                    "lat": 26.77,
+                    "lng": 81.022
+                }
+            ]
+        },
+        "createdAt": "2025-07-26T07:39:21.816Z",
+        "id": 9,
+        "isDeleted": false,
+        "deletedAt": null
+    }
+]

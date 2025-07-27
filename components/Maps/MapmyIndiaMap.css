@@ -1,0 +1,72 @@
+/* PropertyPriceOverlay.css */
+
+.custom-marker {
+  background: #0a3d91;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: 90px;
+  text-align: center;
+}
+
+/* Add bounce only on initial load */
+.custom-marker.animate-in {
+  animation: bounceIn 0.7s ease;
+}
+
+.custom-marker.hovered {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #ffd700;
+  background: #003c8f;
+  z-index: 999;
+}
+.custom-marker.active-property {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #ffd700;
+  background: #003c8f;
+  z-index: 9;
+}
+
+.marker-arrow {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #0a3d91;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.leaflet-popup-content{
+    width: 300px;
+    margin: 0!important;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+    transition: opacity 0.3s ease-in-out;
+}
+.leaflet-zoom-animated{
+  bottom: 2rem!important;
+}
