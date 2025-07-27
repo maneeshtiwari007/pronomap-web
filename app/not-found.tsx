@@ -55,7 +55,7 @@ export default function NotFound() {
                             <CardDescription className="text-xl lg:text-2xl text-brown-875/90 font-medium mb-10">
                                 Tell us what you need, and we’ll connect you with verified professionals nearby.
                             </CardDescription>
-                            <Button animationType="hover" variant="secondary" className="bg-brown-890 hover:opacity-90" asChild>
+                            <Button variant="secondary" className="bg-brown-890 hover:opacity-90" asChild>
                                 <Link href="#" className="flex items-center gap-x-4 text-primary">
                                     <SearchIcon className="w-5 h-5 text-primary" />
                                     <span className="text-primary">Start Your Search Now</span>
