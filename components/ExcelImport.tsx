@@ -172,7 +172,7 @@ export default function ExcelImport({ onImport, isLoading = false }: ExcelImport
         });
         
         // Basic validation passed, create property object
-        const property: Partial<InsertProperty> = {
+        const property: any = {
           title: row.title,
           description: row.description,
           price: Number(row.price),
@@ -359,7 +359,7 @@ export default function ExcelImport({ onImport, isLoading = false }: ExcelImport
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {importedData.slice(0, 5).map((property, index) => (
+                  {importedData.slice(0, 5).map((property:any, index) => (
                     <TableRow key={index}>
                       <TableCell>{property.title}</TableCell>
                       <TableCell>{property.location}</TableCell>

@@ -183,7 +183,7 @@ export default function BulkImportTool({ onImport, isLoading = false }: BulkImpo
   // Validate a row of property data
   const validatePropertyRow = (row: any, index: number): { isValid: boolean; property: Partial<InsertProperty>; errors: ValidationError[] } => {
     const errors: ValidationError[] = [];
-    const property: Partial<InsertProperty> = {};
+    const property: any = {} //Partial<InsertProperty> = {};
     
     // Check required fields are present
     for (const header of EXPECTED_HEADERS) {
@@ -593,10 +593,10 @@ export default function BulkImportTool({ onImport, isLoading = false }: BulkImpo
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {properties.map((property, index) => (
+                          {properties.map((property:any, index) => (
                             <TableRow key={index}>
                               <TableCell className="font-medium">{index + 1}</TableCell>
-                              <TableCell>{property.title}</TableCell>
+                              <TableCell>{property?.title}</TableCell>
                               <TableCell>{property.propertyType}</TableCell>
                               <TableCell>{property.location}</TableCell>
                               <TableCell>{property.propertyStatus}</TableCell>

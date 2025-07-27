@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useRef, useState } from 'react';
 import { Property } from '@shared/schema';
 import { ENV } from '../config/env';
@@ -208,7 +209,7 @@ export default function PropertyMap({ properties, selectedProperty, onPropertySe
   const [selectedSearchPlace, setSelectedSearchPlace] = useState<any>(null);
   const searchMarkerRef = useRef<google.maps.Marker | null>(null);
   const searchLineRef = useRef<google.maps.Polyline | null>(null);
-  const searchTimeoutRef = useRef<NodeJS.Timeout>();
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const markerClickedRef = useRef(false);
   const [propsHover, setPropsHover]: any = useState(undefined);
   const [hovered, setHovered] = useState(false);
@@ -529,7 +530,7 @@ export default function PropertyMap({ properties, selectedProperty, onPropertySe
       handlePlaceSearch(query);
     }, 300);
   };
-  const handleMouseOver = (latLng: google.maps.LatLng,item:any) => {
+  const handleMouseOver = (latLng: google.maps.LatLng,item?:any) => {
     if (!mapRef.current) return;
 
     const scale = Math.pow(2, mapRef.current.getZoom()!);

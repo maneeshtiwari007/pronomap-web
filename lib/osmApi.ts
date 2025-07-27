@@ -6,7 +6,7 @@
 
 import axios from 'axios';
 import { getBoundingBox, calculateRoadDistance, estimateTravelTime } from './mapUtils';
-import queryOverpass from 'query-overpass';
+//import queryOverpass from 'query-overpass';
 
 // Categories of places we can search for
 export type PlaceCategory = 
@@ -200,7 +200,7 @@ function processOsmFeatures(
       
       // Calculate distances
       const directDistance = calculateDistance(propertyLat, propertyLng, latitude, longitude);
-      const roadDistance = calculateRoadDistance(propertyLat, propertyLng, latitude, longitude);
+      const roadDistance:any = calculateRoadDistance(propertyLat, propertyLng, latitude, longitude);
       
       // Calculate travel time estimates
       const drivingTime = estimateTravelTime(roadDistance, 'driving');
@@ -227,11 +227,11 @@ function processOsmFeatures(
       };
     })
     .filter(Boolean) // Remove nulls
-    .sort((a, b) => {
+    .sort((a:any, b:any) => {
       // Add null-safety check
       if (!a || !b) return 0;
       // Sort by distance
-      return a.distance - b.distance;
+      return a?.distance - b?.distance;
     });
 }
 
@@ -254,23 +254,24 @@ export function fetchNearbyPlaces(
     const query = buildOverpassQuery(lat, lng, category, radiusKm);
     
     // Use the query-overpass package to execute the query
-    queryOverpass(query, (error: Error | null, data: any) => {
-      if (error) {
-        console.error(`Error fetching ${category} places:`, error);
-        // Resolve with empty array instead of rejecting, to gracefully handle API failures
-        resolve([]);
-        return;
-      }
+    // queryOverpass(query, (error: Error | null, data: any) => {
+    //   if (error) {
+    //     console.error(`Error fetching ${category} places:`, error);
+    //     // Resolve with empty array instead of rejecting, to gracefully handle API failures
+    //     resolve([]);
+    //     return;
+    //   }
       
-      try {
-        // Process the results into our simplified format
-        const processed = processOsmFeatures(data.features, category, lat, lng);
-        resolve(processed);
-      } catch (err) {
-        console.error(`Error processing ${category} data:`, err);
-        resolve([]);
-      }
-    });
+    //   try {
+    //     // Process the results into our simplified format
+    //     const processed = processOsmFeatures(data.features, category, lat, lng);
+    //     resolve(processed);
+    //   } catch (err) {
+    //     console.error(`Error processing ${category} data:`, err);
+    //     resolve([]);
+    //   }
+    // });
+
   });
 }
 
@@ -365,66 +366,66 @@ export function getApproximateRoute(
       out skel qt;
     `;
     
-    queryOverpass(query, (error: Error | null, data: any) => {
-      if (error) {
-        console.error("Error fetching route data:", error);
-        // If we can't get route data, just return a direct line
-        resolve([[lat1, lng1], [lat2, lng2]]);
-        return;
-      }
+    // queryOverpass(query, (error: Error | null, data: any) => {
+    //   if (error) {
+    //     console.error("Error fetching route data:", error);
+    //     // If we can't get route data, just return a direct line
+    //     resolve([[lat1, lng1], [lat2, lng2]]);
+    //     return;
+    //   }
       
-      try {
-        // This is a simplified approach that doesn't use real routing
-        // A proper routing algorithm would use A* or similar
-        // Here we just find some roads and fit a route-like path
+    //   try {
+    //     // This is a simplified approach that doesn't use real routing
+    //     // A proper routing algorithm would use A* or similar
+    //     // Here we just find some roads and fit a route-like path
         
-        // Extract ways and nodes from the data
-        const highways = data.features.filter((f: any) => 
-          f.properties.tags && f.properties.tags.highway
-        );
+    //     // Extract ways and nodes from the data
+    //     const highways = data.features.filter((f: any) => 
+    //       f.properties.tags && f.properties.tags.highway
+    //     );
         
-        // If we don't have enough road data, return direct line
-        if (highways.length < 3) {
-          resolve([[lat1, lng1], [lat2, lng2]]);
-          return;
-        }
+    //     // If we don't have enough road data, return direct line
+    //     if (highways.length < 3) {
+    //       resolve([[lat1, lng1], [lat2, lng2]]);
+    //       return;
+    //     }
         
-        // Simple approximation: start point, 1-3 intermediate points, end point
-        const route: [number, number][] = [[lat1, lng1]];
+    //     // Simple approximation: start point, 1-3 intermediate points, end point
+    //     const route: [number, number][] = [[lat1, lng1]];
         
-        // Get a middle point from one of the highways
-        let middlePointAdded = false;
+    //     // Get a middle point from one of the highways
+    //     let middlePointAdded = false;
         
-        for (const highway of highways) {
-          if (highway.geometry.type === "LineString") {
-            const coords = highway.geometry.coordinates;
-            if (coords.length > 2) {
-              // Add a middle point from this highway
-              const midIndex = Math.floor(coords.length / 2);
-              route.push([coords[midIndex][1], coords[midIndex][0]]);
-              middlePointAdded = true;
-              break;
-            }
-          }
-        }
+    //     for (const highway of highways) {
+    //       if (highway.geometry.type === "LineString") {
+    //         const coords = highway.geometry.coordinates;
+    //         if (coords.length > 2) {
+    //           // Add a middle point from this highway
+    //           const midIndex = Math.floor(coords.length / 2);
+    //           route.push([coords[midIndex][1], coords[midIndex][0]]);
+    //           middlePointAdded = true;
+    //           break;
+    //         }
+    //       }
+    //     }
         
-        // If we couldn't add a middle point, add an artificial one
-        if (!middlePointAdded) {
-          route.push([
-            (lat1 + lat2) / 2 + (Math.random() * 0.001 - 0.0005),
-            (lng1 + lng2) / 2 + (Math.random() * 0.001 - 0.0005)
-          ]);
-        }
+    //     // If we couldn't add a middle point, add an artificial one
+    //     if (!middlePointAdded) {
+    //       route.push([
+    //         (lat1 + lat2) / 2 + (Math.random() * 0.001 - 0.0005),
+    //         (lng1 + lng2) / 2 + (Math.random() * 0.001 - 0.0005)
+    //       ]);
+    //     }
         
-        // Add the end point
-        route.push([lat2, lng2]);
+    //     // Add the end point
+    //     route.push([lat2, lng2]);
         
-        resolve(route);
-      } catch (err) {
-        console.error("Error processing route data:", err);
-        resolve([[lat1, lng1], [lat2, lng2]]);
-      }
-    });
+    //     resolve(route);
+    //   } catch (err) {
+    //     console.error("Error processing route data:", err);
+    //     resolve([[lat1, lng1], [lat2, lng2]]);
+    //   }
+    // });
   });
 }
 

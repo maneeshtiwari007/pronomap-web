@@ -595,7 +595,7 @@ const AdminDrawingMap = forwardRef<AdminDrawingMapRef, AdminDrawingMapProps>(
                   </Marker>
                 );
               } else {
-                const coordinates = shape.coordinates as number[][];
+                const coordinates:any = shape.coordinates as number[][];
                 return (
                   <Polygon
                     key={shape.id}
