@@ -41,6 +41,10 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
   // });
   
   // If no property is selected, show property listing
+  useEffect(()=>{
+    console.log('property')
+    console.log(property)
+  },[property])
   if (!property) {
     return (
       <div className="bg-white shadow-lg w-full md:w-96 overflow-y-auto z-10 h-auto md:h-auto max-h-screen">
