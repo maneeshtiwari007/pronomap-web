@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import { MapContainer, TileLayer, FeatureGroup, Popup } from "react-leaflet";
-import { EditControl } from "react-leaflet-draw";
+//import { EditControl } from "react-leaflet-draw";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import L from "leaflet";
@@ -352,7 +352,7 @@ const AdminPropertyMap = forwardRef<AdminPropertyMapRef, PropertyMapProps>(
             />
             
             <FeatureGroup ref={featureGroupRef}>
-              <EditControl
+              {/* <EditControl
                 position="topright"
                 onCreated={handleCreated}
                 onEdited={handleEdited}
@@ -380,7 +380,7 @@ const AdminPropertyMap = forwardRef<AdminPropertyMapRef, PropertyMapProps>(
                   circlemarker: false,
                   polyline: false
                 }}
-              />
+              /> */}
             </FeatureGroup>
           </MapContainer>
         </div>

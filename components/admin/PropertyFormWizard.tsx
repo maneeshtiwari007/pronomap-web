@@ -30,7 +30,7 @@ import {
 import { Info, AlertTriangle, CheckCircle2 } from "lucide-react";
 
 // Extended schema for the form with validations
-const extendedPropertySchema = insertPropertySchema.extend({
+const extendedPropertySchema:any = insertPropertySchema.extend({
   // Add more specific validations or transformations
   price: z.preprocess(
     (val) => (val === '' ? undefined : Number(val)),
@@ -91,7 +91,7 @@ const extendedPropertySchema = insertPropertySchema.extend({
 });
 
 // Extract type from our extended schema
-type PropertyFormValues = z.infer<typeof extendedPropertySchema>;
+type PropertyFormValues = typeof extendedPropertySchema;
 
 // Property types available for selection
 const PROPERTY_TYPES = [
@@ -1273,7 +1273,7 @@ export default function PropertyFormWizard({
                                             ? field.onChange([...field.value || [], amenity])
                                             : field.onChange(
                                                 field.value?.filter(
-                                                  (value) => value !== amenity
+                                                  (value:any) => value !== amenity
                                                 )
                                               )
                                         }}

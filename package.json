@@ -56,6 +56,7 @@
     "cookies-next": "^5.1.0",
     "crypto-js": "^4.2.0",
     "date-fns": "^3.6.0",
+    "drizzle-zod": "^0.8.2",
     "embla-carousel-react": "^8.5.2",
     "eslint": "9.19.0",
     "eslint-config-next": "15.1.6",
@@ -63,6 +64,7 @@
     "html2pdf.js": "^0.10.3",
     "input-otp": "^1.4.2",
     "install": "^0.13.0",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.446.0",
     "motion": "^12.4.3",
     "motion-plus": "^0.1.6",
@@ -71,6 +73,7 @@
     "next-themes": "^0.4.6",
     "npm": "^11.1.0",
     "postcss": "8.4.30",
+    "query-overpass": "^1.5.5",
     "quill": "^2.0.3",
     "react": "19.0.0",
     "react-day-picker": "^9.5.1",
@@ -90,10 +93,13 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
     "vaul": "^1.1.2",
+    "xlsx": "^0.18.5",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
+    "@types/leaflet": "^1.9.20",
+    "@types/xlsx": "^0.0.35",
     "sass": "^1.83.4"
   },
   "overrides": {
