@@ -23,38 +23,39 @@ interface PropertyPanelProps {
   property: any | null;
   onClose: () => void;
   onPropertySelect?: (property: []) => void;
-  properties:any
+  properties: any
 }
 
-export default function PropertyPanel({ properties,property, onClose, onPropertySelect }: PropertyPanelProps) {
+export default function PropertyPanel({ properties, property, onClose, onPropertySelect }: PropertyPanelProps) {
   const isMobile = useIsMobile();
   const { toast } = useToast();
   const [activeNearbyFilter, setActiveNearbyFilter] = useState<PlaceCategory | null>(null);
   const [nearbyRadius, setNearbyRadius] = useState<number>(3); // Default 3 KM
   const [isLoadingNearby, setIsLoadingNearby] = useState<boolean>(false);
-  const [isLoading,setIsLoading] = useState(false);
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   // Fetch all properties to display in the list when no property is selected
   // const { data: properties, isLoading } = useQuery<Property[]>({
   //   queryKey: ['/api/properties'],
   //   enabled: !property,
   // });
-  
+
   // If no property is selected, show property listing
-  useEffect(()=>{
+  useEffect(() => {
     console.log('property')
     console.log(property)
-  },[property])
+  }, [property])
   if (!property) {
     return (
-      <div className="bg-white shadow-lg w-full md:w-96 overflow-y-auto z-10 h-auto md:h-auto max-h-screen">
+      <div className="bg-white shadow-lg w-full overflow-y-auto z-10 h-auto md:h-auto max-h-screen">
         <div className="p-4 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-primary">Properties</h3>
           <p className="text-sm text-gray-600">{properties?.length || 0} properties available</p>
         </div>
-        
+
         {isLoading ? (
-          <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 grid grid-cols-1 gap-4">
+            {/* <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4"> */}
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="border rounded-lg p-3 animate-pulse">
                 <div className="w-full h-24 bg-gray-200 rounded mb-3"></div>
@@ -68,22 +69,22 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
             ))}
           </div>
         ) : properties && properties.length > 0 ? (
-          <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto">
-            {properties.map((prop:any) => (
-              <div 
-                key={prop.id} 
-                id={"property-"+prop.id}
+          <div className="p-4 grid grid-cols-1 gap-4 overflow-auto">
+            {properties.map((prop: any) => (
+              <div
+                key={prop.id}
+                id={"property-" + prop.id}
                 className="border rounded-lg overflow-hidden shadow-sm  transition-shadow cursor-pointer hover:shadow-xl duration-300 transform hover:scale-[1.03]"
                 onClick={() => onPropertySelect && onPropertySelect(prop)}
-                onMouseEnter={()=>{addClassBasedOnId('marker-'+prop.id,REUSABLE_CLASS_NAMES.ACTIVE_PROPERTY,'add')}}
-                onMouseLeave={()=>{addClassBasedOnId('marker-'+prop.id,REUSABLE_CLASS_NAMES.ACTIVE_PROPERTY,'remove')}}
+                onMouseEnter={() => { addClassBasedOnId('marker-' + prop.id, REUSABLE_CLASS_NAMES.ACTIVE_PROPERTY, 'add') }}
+                onMouseLeave={() => { addClassBasedOnId('marker-' + prop.id, REUSABLE_CLASS_NAMES.ACTIVE_PROPERTY, 'remove') }}
               >
                 <div className="relative">
                   <div className="h-32 bg-gray-200">
                     {prop.featuredImage ? (
-                      <img 
-                        src={prop.featuredImage} 
-                        alt={prop.title} 
+                      <img
+                        src={prop.featuredImage}
+                        alt={prop.title}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -110,7 +111,7 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
                         Featured
                       </div>
                     )}
-                    <Badge 
+                    <Badge
                       className="absolute top-2 right-2 bg-primary text-white"
                       variant="default"
                     >
@@ -118,7 +119,7 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
                     </Badge>
                   </div>
                 </div>
-                
+
                 <div className="p-3">
                   <h3 className="font-semibold text-primary truncate">{prop.title}</h3>
                   <p className="text-gray-600 text-xs flex items-center mt-1">
@@ -139,7 +140,7 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
                     </svg>
                     {prop.location}
                   </p>
-                  
+
                   <div className="mt-2 flex justify-between items-center border-t pt-2">
                     <span className="font-bold text-primary">{formatPrice(prop.price)}</span>
                     <div className="text-xs text-gray-600">
@@ -178,19 +179,19 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
   const toggleNearbyFilter = (filter: PlaceCategory) => {
     // Get previous state to determine if we're turning on or off
     const wasActive = activeNearbyFilter === filter;
-    
+
     // Update local state
     if (wasActive) {
       setActiveNearbyFilter(null);
     } else {
       setActiveNearbyFilter(filter);
     }
-    
+
     // If property is available, notify the map component via parent to show nearby places
     if (property) {
       // Create a custom event that the PropertyMap component can listen for
-      const event = new CustomEvent('nearbyFilterChanged', { 
-        detail: { 
+      const event = new CustomEvent('nearbyFilterChanged', {
+        detail: {
           filter: wasActive ? null : filter,
           propertyId: property?.id,
           radius: nearbyRadius
@@ -222,13 +223,13 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
           </Button>
         )}
       </div>
-      
+
       {/* Property Details */}
       <div className="p-4 animate-fadeIn">
         <div className="relative mb-4">
-          <img 
-            src={property.featuredImage} 
-            alt={property.title} 
+          <img
+            src={property.featuredImage}
+            alt={property.title}
             className="w-full h-48 object-cover rounded-lg"
           />
           {property.tags && property.tags.length > 0 && (
@@ -237,7 +238,7 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
             </div>
           )}
         </div>
-        
+
         <h4 className="font-poppins font-bold text-gray-900 text-xl mb-1">{property.title}</h4>
         <p className="text-gray-600 mb-2">
           <svg
@@ -262,12 +263,12 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
           </svg>
           {property.location}, Lucknow
         </p>
-        
+
         <div className="flex justify-between items-center mb-4">
           <div className="text-2xl font-bold text-primary">{formatPrice(property.price)}</div>
           <div className="text-sm text-gray-600">₹{property.pricePerSqFt}/sq.ft</div>
         </div>
-        
+
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="text-center p-2 bg-gray-100 rounded">
             <div className="text-sm text-gray-600">Type</div>
@@ -282,7 +283,7 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
             <div className="font-medium">{property.floors} of 12</div>
           </div>
         </div>
-        
+
         <div className="space-y-2 mb-4">
           <div className="flex items-center">
             <svg
@@ -338,14 +339,14 @@ export default function PropertyPanel({ properties,property, onClose, onProperty
             </div>
           )}
         </div>
-        
+
         <div className="space-y-3">
           <h5 className="font-medium text-gray-800">Project Details</h5>
           <div className="text-gray-700 text-sm whitespace-pre-line">
             {property.description || 'No additional details available.'}
           </div>
         </div>
-        
+
         <div className="mt-6 space-y-3">
           <Link href={`/property/${property.id}`}>
             <Button className="w-full bg-accent hover:bg-yellow-600 text-primary font-medium transition-colors">

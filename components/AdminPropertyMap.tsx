@@ -297,7 +297,7 @@ const AdminPropertyMap = forwardRef<AdminPropertyMapRef, PropertyMapProps>(
               <button
                 key={type}
                 onClick={() => handlePropertyTypeChange(type)}
-                className={`px-3 py-1 text-xs rounded-full transition-colors ${
+                className={`p-3 text-xs rounded-full transition-colors ${
                   selectedPropertyType === type 
                     ? 'bg-primary text-white' 
                     : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
@@ -313,7 +313,7 @@ const AdminPropertyMap = forwardRef<AdminPropertyMapRef, PropertyMapProps>(
             <select
               value={mapType}
               onChange={(e) => setMapType(e.target.value as any)}
-              className="px-3 py-1 text-sm rounded border border-gray-300 bg-white"
+              className="p-3 text-sm rounded border border-gray-300 bg-white"
             >
               <option value="map">Standard Map</option>
               <option value="satellite">Satellite</option>
