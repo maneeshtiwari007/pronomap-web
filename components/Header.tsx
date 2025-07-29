@@ -49,11 +49,11 @@ export default function Header() {
         {!isMobile && (
           <nav className="flex items-center space-x-3">
             <Link href="/admin">
-              <Button variant="header" className="rounded-full px-5 py-2 font-medium">Admin Panel</Button>
+              <Button variant="header" className="rounded-lg px-5 py-2 font-medium">Admin Panel</Button>
             </Link>
             {/* Buy Popup */}
             <div className="relative">
-              <Button variant="header" className="rounded-full px-5 py-2 font-medium" onClick={() => setBuyOpen(v => !v)} onBlur={() => setTimeout(() => setBuyOpen(false), 200)}>
+              <Button variant="header" className="rounded-lg px-5 py-2 font-medium" onClick={() => setBuyOpen(v => !v)} onBlur={() => setTimeout(() => setBuyOpen(false), 200)}>
                 Buy
               </Button>
               {buyOpen && (
@@ -66,7 +66,7 @@ export default function Header() {
             </div>
             {/* Sell Popup */}
             <div className="relative">
-              <Button variant="header" className="rounded-full px-5 py-2 font-medium" onClick={() => setSellOpen(v => !v)} onBlur={() => setTimeout(() => setSellOpen(false), 200)}>
+              <Button variant="header" className="rounded-lg px-5 py-2 font-medium" onClick={() => setSellOpen(v => !v)} onBlur={() => setTimeout(() => setSellOpen(false), 200)}>
                 Sell
               </Button>
               {sellOpen && (
@@ -79,7 +79,7 @@ export default function Header() {
             </div>
             {/* Rent Popup */}
             <div className="relative">
-              <Button variant="header" className="rounded-full px-5 py-2 font-medium" onClick={() => setRentOpen(v => !v)} onBlur={() => setTimeout(() => setRentOpen(false), 200)}>
+              <Button variant="header" className="rounded-lg px-5 py-2 font-medium" onClick={() => setRentOpen(v => !v)} onBlur={() => setTimeout(() => setRentOpen(false), 200)}>
                 Rent
               </Button>
               {rentOpen && (
@@ -91,16 +91,16 @@ export default function Header() {
               )}
             </div>
             <Link href="/post-property">
-              <Button variant="header" className="rounded-full px-5 py-2 font-medium">Post Property</Button>
+              <Button variant="header" className="rounded-lg px-5 py-2 font-medium">Post Property</Button>
             </Link>
             <Link href="/contact">
-              <Button variant="header" className="rounded-full px-5 py-2 font-medium">Contact Us</Button>
+              <Button variant="header" className="rounded-lg px-5 py-2 font-medium">Contact Us</Button>
             </Link>
             <Link href="/login">
-              <Button variant="header" className="rounded-full px-5 py-2 font-medium">Login / Register</Button>
+              <Button variant="header" className="rounded-lg px-5 py-2 font-medium">Login / Register</Button>
             </Link>
             <Link href="/blog">
-              <Button variant="header" className="rounded-full px-5 py-2 font-medium">Articles and News</Button>
+              <Button variant="header" className="rounded-lg px-5 py-2 font-medium">Articles and News</Button>
             </Link>
           </nav>
         )}
@@ -108,7 +108,7 @@ export default function Header() {
         {isMobile && (
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Menu">
+              <Button variant="ghost" size="icon" aria-label="Menu" className="text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

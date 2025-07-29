@@ -21,7 +21,7 @@ export function PropertyListCard({ property }: any) {
                     <div className="text-xs text-gray-600 mb-1 truncate">{property.location}</div>
                     <div className="text-primary font-bold text-sm mb-1">{property.price ? formatPrice(property.price) : ''}</div>
                     <div className="flex-1" />
-                    <Link href={'/property/' + property?.slug} className="text-center bg-primary text-white rounded-lg px-3 py-1 font-semibold hover:bg-[#2563eb] transition-colors mt-2 text-xs">View Details</Link>
+                    <Link href={'/property/' + property?.slug} className="text-center bg-primary text-white rounded-lg p-3 font-semibold hover:bg-[#2563eb] transition-colors mt-2 text-xs">View Details</Link>
                 </div>
             </div>
         </div>

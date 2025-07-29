@@ -112,7 +112,7 @@ export default function SearchPageComponent({ params }: any) {
         setHasMounted(true);
     }, []);
     useEffect(() => {
-         if (!hasMounted) return;
+        if (!hasMounted) return;
         setProperties(undefined);
         const filterObj: any = convertFromStringToObj(searchParams?.toString())
         console.log(filterObj);
@@ -122,13 +122,13 @@ export default function SearchPageComponent({ params }: any) {
             setVisibleProperties(allProperties);
         }
         handleFilterSubmit(allProperties?.length);
-    }, [searchParams,hasMounted,isMobile])
+    }, [searchParams, hasMounted, isMobile])
     return (
-        <>
+        <div className="container mx-auto">
             {/* Main Content: Map + Property List Two-Column Layout  max-w-[1400px]*/}
-            <div className="mt-4 relative flex-1 w-full w-full mx-auto px-2 md:px-4 flex flex-col md:flex-row gap-0 md:gap-6" style={{ minHeight: '520px' }}>
+            <div className="mt-4 relative flex-1 w-full mx-auto px-2 md:px-4 flex flex-col md:flex-row gap-0 md:gap-6" style={{ minHeight: '520px' }}>
                 {/* Map Area */}
-                <div className="w-full md:w-2/3 lg:w-3/4 flex-shrink-0 flex-grow-0 pl-4" style={{ maxHeight: 720, minHeight: 480 }}>
+                <div className="w-full md:w-2/3 lg:w-3/4 flex-shrink-0 flex-grow-0" style={{ maxHeight: 720, minHeight: 480 }}>
                     {/* <PropertyMap
                             properties={properties || []}
                             selectedProperty={selectedProperty}
@@ -152,9 +152,7 @@ export default function SearchPageComponent({ params }: any) {
                 </div>
                 {/* Property List/Panel - improved sizing and scroll */}
                 <div
-                    className="w-full md:w-[370px] lg:w-[400px] flex-shrink-0 flex-grow-0 md:h-[calc(100vh-160px)] max-h-[calc(100vh-160px)] overflow-y-auto bg-white rounded-lg shadow-md p-0 md:p-2"
-                    style={{ minWidth: 320 }}
-                >
+                    className="w-full md:w-1/3 lg:w-1/4 flex-shrink-0 flex-grow-0 md:h-[calc(100vh-160px)] max-h-[calc(100vh-160px)] overflow-y-auto bg-white rounded-lg shadow-md p-0 md:p-2">
                     {properties &&
                         <PropertyPanel
                             properties={(visibleProperties) ? visibleProperties : properties}
@@ -166,6 +164,6 @@ export default function SearchPageComponent({ params }: any) {
                 </div>
             </div>
             <NewlyLaunchedProjects />
-        </>
+        </div>
     );
 }

@@ -380,7 +380,7 @@ const AdminDrawingMap = forwardRef<AdminDrawingMapRef, AdminDrawingMapProps>(
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category as PropertyCategoryType)}
-                  className={`px-3 py-1 text-xs rounded-full transition-colors flex items-center ${
+                  className={`p-3 text-xs rounded-full transition-colors flex items-center ${
                     selectedCategory === category 
                       ? 'bg-primary text-white' 
                       : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
