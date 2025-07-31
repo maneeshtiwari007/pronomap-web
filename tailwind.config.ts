@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
 const flowbite = require("flowbite-react/tailwind");
-
 const config: Config = {
   darkMode: ["class"],
   content: [
@@ -592,6 +591,14 @@ const config: Config = {
         "0%, 80%, 100%": { transform: "translateY(0)", opacity: "0.2" },
         "40%": { transform: "translateY(-0.25rem)", opacity: "1" },
       },
+      "slide-in-from-bottom": {
+        '0%': { transform: 'translateY(100%)', opacity: "0" },
+        '100%': { transform: 'translateY(0)', opacity: "1" },
+      },
+      "slide-out-to-bottom": {
+        '0%': { transform: 'translateY(0)', opacity: "1" },
+        '100%': { transform: 'translateY(100%)', opacity: "0" },
+      },
     },
     animation: {
       "accordion-down": "accordion-down 0.2s ease-out",
@@ -599,6 +606,8 @@ const config: Config = {
       overlayShow: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       "dot-bounce": "dot-bounce 1.4s infinite ease-in-out",
+      "slide-in-from-bottom": "slide-in-from-bottom 0.3s ease-out",
+      "slide-out-to-bottom": "slide-out-to-bottom 0.3s ease-in",
     },
     screens: {
       sm: "640px",
