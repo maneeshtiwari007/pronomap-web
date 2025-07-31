@@ -72,27 +72,28 @@ export default function DemandPanel() {
   return (
     <div className="py-10 bg-white">
       <div className="container mx-auto px-4">
-        <div className="md:flex items-center mb-6">
-          <h2 className="text-2xl font-poppins font-bold text-[#0A3C7D] flex items-center mr-4">
+        <div className="lg:flex items-center mb-6">
+          <h2 className="text-2xl font-poppins font-bold text-[#0A3C7D] flex items-center mr-lg-4 mb-3 mb-lg-0">
             Demand in Lucknow
             <span className="ml-2 text-base text-gray-400" title="Where are buyers searching in Delhi?">ℹ️</span>
           </h2>
-          <div className="flex flex-wrap gap-2 md:ml-6 mt-3 md:mt-0">
+          <div className="flex gap-2 lg:ml-6 mt-3 md:mt-0 overflow-x-auto">
             {regions && regions?.map((region: any) => (
               <button
                 key={region}
-                className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${activeRegion === region ? "bg-[#0A3C7D] text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
-                onClick={() => {setActiveRegion(region);getPropertyBasedOnRegion(region)}}
+                className={`shrink-0 px-4 py-2 rounded-lg font-medium text-sm transition-colors ${activeRegion === region ? "bg-[#0A3C7D] text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
+                onClick={() => { setActiveRegion(region); getPropertyBasedOnRegion(region) }}
               >
                 {region}
               </button>
             ))}
           </div>
+
         </div>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-            {propertyLists && propertyLists?.map((property: any, index: number) => {
-             return <PropertyListCard property={property} key={index}/>
-            })}
+          {propertyLists && propertyLists?.map((property: any, index: number) => {
+            return <PropertyListCard property={property} key={index} />
+          })}
           {/* {Object.entries(data).map(([category, list]) => (
             <div key={category} className="bg-[#F6FAFF] rounded-xl shadow p-6 flex flex-col">
               <h3 className="font-semibold text-lg text-[#0A3C7D] mb-4">{category}</h3>
