@@ -7,6 +7,8 @@ import {
     InfoWindow,
     useLoadScript,
     OverlayView,
+    LoadScript,
+    GroundOverlay,
 } from '@react-google-maps/api';
 import { REUSABLE_CLASS_NAMES, REUSABLE_CONSTANT } from '@/lib/Contants';
 import { Property } from '@shared/schema';
@@ -45,8 +47,18 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
     isError,
     onBoundChange
 }) => {
-    const [center, setCenter] = useState({ lat: 26.8467, lng: 80.9462 });
+    const [center, setCenter] = useState({
+        lat: 35.1107,
+        lng: -106.6100,
+    });//useState({ lat: 26.8467, lng: 80.9462 });
+    const bounds = {
+        north: 35.1110,
+        south: 35.1104,
+        east: -106.6095,
+        west: -106.6105,
+    };
     const mapRef = useRef<google.maps.Map | null>(null);
+    const svgRef = useRef<SVGSVGElement | null>(null);
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: REUSABLE_CONSTANT.GOOGLE_MAPS_API_KEY || '',
         libraries: ['places'],
@@ -113,7 +125,7 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={12}
+                zoom={18}
                 onClick={() => setSelectedPropertyId(null)} // Close InfoWindow on map click
                 onLoad={(map) => {
                     mapRef.current = map;
@@ -125,7 +137,20 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
                         setCenter({ lat: newCenter.lat(), lng: newCenter.lng() });
                     }
                 }}
+                options={{
+                    maxZoom: 18,
+                    streetViewControl: true,
+                    mapTypeControl: true,
+                    fullscreenControl: true,
+                }}
             >
+                <GroundOverlay
+                    url="https://www.zillowstatic.com/floor_map/6ed2c5e0-9934-490d-b420-70bc605123bf/floor_shape/dd12d6fc57/compressed.svg" // Use public folder or remote URL
+                    bounds={bounds}
+                    opacity={0.7}
+                    onLoad={() => { alert('Loaded') }}
+                    visible={true}
+                />
                 {properties && properties?.map((item: any, index: any) => {
                     return <OverlayView
                         key={item?.id}
