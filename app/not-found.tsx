@@ -15,7 +15,8 @@ export default function NotFound() {
                 <div className="lg:flex items-stretch px-4 lg:p-0">
                     <div className="w-full justify-center py-4 md:py-8 lg:py-10 xl:py-12 md:flex items-center">
                         <div className="relative z-10">
-                            <div className="mb-[60px] lg:mb-[100px] text-center">
+                             <div className="text-center">
+                            {/* <div className="mb-[60px] lg:mb-[100px] text-center"> */}
                                 <Image width={250} height={213} alt='Img Not Found Img' className='img-fluid max-w-[250px] h-auto mx-auto mb-6' src={imgNotFound.src} />
                                 <h1 className="capitalize leading-tight mb-6 lg:mb-8 xl:mb-10 text-gray-190/70 lg:text-5xl text-3xl md:text-5xl sm:text-4xl">
                                     Oops! Page Not Found
