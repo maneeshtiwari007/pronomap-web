@@ -148,7 +148,7 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
                     url="https://www.zillowstatic.com/floor_map/6ed2c5e0-9934-490d-b420-70bc605123bf/floor_shape/dd12d6fc57/compressed.svg" // Use public folder or remote URL
                     bounds={bounds}
                     opacity={0.7}
-                    onLoad={() => { alert('Loaded') }}
+                    onLoad={() => {  }}
                     visible={true}
                 />
                 {properties && properties?.map((item: any, index: any) => {
