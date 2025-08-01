@@ -3,11 +3,12 @@ import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useIsTablet } from "@/hooks/use-tablet";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import logo from '@/assets/Logo.png';
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown, ChevronDown } from "lucide-react";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export default function Header() {
   const isMobile = useIsMobile();
@@ -17,7 +18,8 @@ export default function Header() {
   const [rentOpen, setRentOpen] = useState(false);
 
   const isTablet = useIsTablet();
-
+  console.log('isTablet')
+  console.log(isTablet)
   // Categories for Buy/Sell/Rent
   const propertyCategories = [
     'Flat/Apartment',
@@ -50,7 +52,7 @@ export default function Header() {
           <span className="ml-3 font-poppins font-bold text-2xl tracking-tight text-white">Propron<span className="text-[#BFD8F7]">MAP</span></span>
         </Link>
         {/* Desktop Navigation */}
-        {!isTablet && (
+        {(!isMobile && !isTablet) && (
           <nav className="flex items-center space-x-3">
             <ul className="flex items-center space-x-3 text-white font-medium">
               <li><Link className="px-5 py-2 text-yellow" href="/admin">Admin Panel</Link></li>
@@ -101,7 +103,7 @@ export default function Header() {
           </nav>
         )}
         {/* Mobile Menu Button */}
-        {isTablet && (
+        {(isMobile || isTablet)  && (
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Menu" className="text-white">
@@ -124,6 +126,9 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent>
+              <SheetTitle asChild>
+                    <VisuallyHidden>Property Filter</VisuallyHidden>
+                </SheetTitle>
               <div className="flex flex-col space-y-4 mt-8">
                 <Link href="/admin" className="font-medium text-gray-700 hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>Admin Panel</Link>
                 <Link href="/post-property" className="font-medium text-gray-700 hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>Post Property</Link>

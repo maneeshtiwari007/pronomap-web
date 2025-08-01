@@ -558,3 +558,21 @@ export function createNearbyPlaceIcon(
     popupAnchor: [0, -20]
   });
 }
+
+export async function reverseGeocode(lat: number, lng: number): Promise<string | null> {
+  try {
+    const res = await fetch(
+      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=6aaac5aacac54c73bcd6428e23ae68c8`
+    );
+    const data = await res.json();
+
+    if (data && data.results && data.results.length > 0) {
+      return data.results[0].formatted;
+    } else {
+      return null;
+    }
+  } catch (err) {
+    console.error("Reverse geocoding failed:", err);
+    return null;
+  }
+}

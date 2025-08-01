@@ -34,4 +34,8 @@ export const ApiServices = {
         //return response?.data;
         return (response?.length > 0)?response:[response];//?.slice(0,3);
     },
+    async getApiData(){
+        const response:any = await api.get('http://localhost:8000/roles');
+        return response?.data;
+    }
 }

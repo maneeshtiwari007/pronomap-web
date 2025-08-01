@@ -9,6 +9,8 @@ import propertiesApiData from '@/lib/api/properties.json';
 import { PropertyGoogleMap } from "./ui/Maps/PropertyGoogleMap";
 import { useSearchParams } from "next/navigation";
 import { convertFromStringToObj } from "@/lib/utils";
+import { usePollingQuery } from "@/hooks/usePollingQuery";
+import { ApiServices } from "@/lib/apiServices";
 
 export default function SearchPageComponent({ params }: any) {
     const { toast } = useToast();
@@ -34,9 +36,10 @@ export default function SearchPageComponent({ params }: any) {
     const [properties, setProperties]: any = useState();
     // Apply filters to properties client-side
     const filterProperties = (properties: any | undefined, filter: any) => {
+
         if (!properties) return [];
 
-        return properties.filter((property: any) => {
+        properties.filter((property: any) => {
             // Filter by location if selected
             // if (filter.location && filter.location.length > 0) {
             //     const locationMatch = filter?.location?.some((loc: any) =>
@@ -89,6 +92,7 @@ export default function SearchPageComponent({ params }: any) {
 
             return true;
         });
+        return properties
     };
     // const allProperties: any = filterProperties(propertiesApiData, filterObj);
     // console.log(allProperties);
@@ -111,24 +115,36 @@ export default function SearchPageComponent({ params }: any) {
     useEffect(() => {
         setHasMounted(true);
     }, []);
+    // const filterObj: any = convertFromStringToObj(searchParams?.toString());
+    // const allProperties:any = filterProperties(propertiesApiData, filterObj);
+    // const { data } = usePollingQuery({
+    //     key: 'properties',
+    //     queryFn: async () => {
+    //         const res = await ApiServices.getApiData();
+    //         return res;
+    //     },
+    //     interval:5000
+    // });
     useEffect(() => {
         if (!hasMounted) return;
         setProperties(undefined);
-        const filterObj: any = convertFromStringToObj(searchParams?.toString())
-        console.log(filterObj);
-        const allProperties: any = filterProperties(propertiesApiData, filterObj);
+        const filterObj: any = convertFromStringToObj(searchParams?.toString());
+        const allProperties:any = filterProperties(propertiesApiData, filterObj);
+        //const allProperties: any = allProperties;
+        console.log('allProperties')
+        console.log(allProperties)
         setProperties(allProperties);
         if (isMobile) {
-            setVisibleProperties(allProperties);
+            setVisibleProperties(undefined);
         }
         handleFilterSubmit(allProperties?.length);
-    }, [searchParams, hasMounted, isMobile])
+    }, [searchParams, hasMounted, isMobile]);
     return (
         <div className="container mx-auto">
             {/* Main Content: Map + Property List Two-Column Layout  max-w-[1400px]*/}
             <div className="mt-4 relative flex-1 w-full mx-auto px-2 md:px-4 flex flex-col md:flex-row gap-0 md:gap-6" style={{ minHeight: '520px' }}>
                 {/* Map Area */}
-                <div className="w-full md:w-2/3 lg:w-3/4 flex-shrink-0 flex-grow-0" style={{ maxHeight: 720, minHeight: 480 }}>
+                <div className="w-full md:w-2/3 lg:w-3/4 flex-shrink-0 flex-grow-0 md:h-[auto] h-[520px]" style={{ maxHeight: 720, minHeight: 480 }}>
                     {/* <PropertyMap
                             properties={properties || []}
                             selectedProperty={selectedProperty}
@@ -139,21 +155,23 @@ export default function SearchPageComponent({ params }: any) {
                             isError={isError}
                             onBoundChange={(e:any)=>{setVisibleProperties(e)}}
                         /> */}
+
                     <PropertyGoogleMap
                         properties={properties || []}
                         selectedProperty={selectedProperty}
-                        onPropertySelect={(pr: any) => handlePropertySelect(pr)}
+                        onPropertySelect={(pr: any) => {}}//handlePropertySelect(pr)}
                         mapType={mapType}
                         onMapTypeChange={setMapType}
                         isLoading={isLoading}
                         isError={isError}
                         onBoundChange={(e: any) => { setVisibleProperties(e) }}
                     />
+
                 </div>
                 {/* Property List/Panel - improved sizing and scroll */}
                 <div
                     className="w-full md:w-1/3 lg:w-1/4 flex-shrink-0 flex-grow-0 md:h-[calc(100vh-160px)] max-h-[calc(100vh-160px)] overflow-y-auto bg-white rounded-lg shadow-md p-0 md:p-2">
-                    {properties &&
+                    {!isMobile && properties &&
                         <PropertyPanel
                             properties={(visibleProperties) ? visibleProperties : properties}
                             property={selectedProperty}
