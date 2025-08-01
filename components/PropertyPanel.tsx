@@ -69,7 +69,7 @@ export default function PropertyPanel({ properties, property, onClose, onPropert
             ))}
           </div>
         ) : properties && properties.length > 0 ? (
-          <div className="p-4 grid grid-cols-1 gap-4 overflow-auto">
+          <div className="p-4 grid grid-cols-2 gap-4 overflow-auto">
             {properties.map((prop: any) => (
               <div
                 key={prop.id}
@@ -205,7 +205,7 @@ export default function PropertyPanel({ properties, property, onClose, onPropert
     <div className="bg-white shadow-lg w-full overflow-y-auto z-10 h-auto md:h-auto" id="property-panel">
       <div className="p-4 border-b border-gray-200 flex justify-between items-center">
         <h3 className="text-lg font-semibold text-primary">Selected Property</h3>
-        {isMobile && (
+        {/* {isMobile && ( */}
           <Button variant="ghost" size="sm" onClick={onClose}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +221,7 @@ export default function PropertyPanel({ properties, property, onClose, onPropert
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </Button>
-        )}
+        {/* )} */}
       </div>
 
       {/* Property Details */}

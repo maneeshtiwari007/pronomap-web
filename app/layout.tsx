@@ -12,8 +12,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SearchBar from '@/components/SearchBar';
 import { ThemeProvider } from "next-themes";
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '@/lib/queryClient';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import MainLayout from '@/components/MainLayout';
@@ -55,7 +54,7 @@ export const metadata: Metadata = {
     follow: true,
   }
 };
-
+const queryClient = new QueryClient();
 export default async function RootLayout({
   children,
 }: {
@@ -68,8 +67,9 @@ export default async function RootLayout({
 
   return (
     <html>
+      <head><meta name="viewport" content="width=device-width, initial-scale=1.0"/></head>
       <body>
-        <MainLayout>{children}</MainLayout>
+          <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

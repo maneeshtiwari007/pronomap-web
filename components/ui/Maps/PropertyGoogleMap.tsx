@@ -1,5 +1,5 @@
 // components/PropertyMap.tsx
-
+'use client'
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
     GoogleMap,
@@ -18,6 +18,10 @@ import "@/styles/PropertyPriceOverlay.css";
 import { Badge } from '../badge';
 import { MarkerHoverCard } from './MarkerHoverCard';
 import { addClassInElement, debounce, removeClassFromElement } from '@/lib/utils';
+import Link from 'next/link';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { useLocationStore } from '@/hooks/useLocationStore';
+import { reverseGeocode } from '@/lib/mapUtils';
 
 interface PropertyMapProps {
     properties?: Property[];
@@ -47,16 +51,20 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
     isError,
     onBoundChange
 }) => {
-    const [center, setCenter] = useState({
-        lat: 35.1107,
-        lng: -106.6100,
-    });//useState({ lat: 26.8467, lng: 80.9462 });
-    const bounds = {
-        north: 35.1110,
-        south: 35.1104,
-        east: -106.6095,
-        west: -106.6105,
-    };
+    const [center, setCenter] = useState({ lat: 26.8467, lng: 80.9462 });
+    const isMobile = useIsMobile();
+    const { location,updateLocationData } = useLocationStore();
+    // useState({
+    //     lat: 35.1107,
+    //     lng: -106.6100,
+    // });
+    //useState({ lat: 26.8467, lng: 80.9462 });
+    // const bounds = {
+    //     north: 35.1110,
+    //     south: 35.1104,
+    //     east: -106.6095,
+    //     west: -106.6105,
+    // };
     const mapRef = useRef<google.maps.Map | null>(null);
     const svgRef = useRef<SVGSVGElement | null>(null);
     const { isLoaded, loadError } = useLoadScript({
@@ -67,8 +75,9 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
     const [hovered, setHovered] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [propsHover, setPropsHover]: any = useState(undefined);
-    if (loadError) return <div>Map failed to load.</div>;
-    if (!isLoaded) return <div>Loading map...</div>;
+    const [clickedPropertyId, setClickedPropertyId] = useState<string | null>(null);
+
+
 
     const handleMouseOver = (latLng: any, item: any) => {
         if (!mapRef.current) return;
@@ -97,6 +106,7 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
         //onPropertySelect(propsHover);
     };
     const handleMouseLeave = (item: any) => {
+        if (item?.id === clickedPropertyId) return;
         setPropsHover(undefined);
         if (!mapRef.current) return;
         if (item?.id) {
@@ -105,7 +115,8 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
         }
         setHovered(false);
         document.getElementById("property-" + item?.id)?.classList?.remove('hovered')
-        document.getElementById("property-" + item?.id)?.classList?.remove('shadow-xl')
+        document.getElementById("property-" + item?.id)?.classList?.remove('shadow-xl');
+        removeClassFromElement(REUSABLE_CLASS_NAMES.ACTIVE_PROPERTY);
         //onPropertySelect(propsHover);
     };
     const handleOnChangeBound = () => {
@@ -119,14 +130,39 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
         );
         onBoundChange?.(visibleProperties);
     }
+    const getLocationData = async () => {
+        console.log('location')
+        console.log(location);
+        console.log(isLoaded)
+        setCenter({ lat: location?.lat, lng: location?.lng });
+        const geoCode: any = await reverseGeocode(location?.lat, location?.lng);
+        updateLocationData(geoCode)
+        console.log(geoCode);
+    }
+    useEffect(() => {
 
+        if (location?.lat) {
+            getLocationData()
+        }
+    }, [location]);
+
+    if (loadError) return <div>Map failed to load.</div>;
+    if (!isLoaded) return <div>Loading map...</div>;
     return (
         <>
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={18}
-                onClick={() => setSelectedPropertyId(null)} // Close InfoWindow on map click
+                zoom={(isMobile) ? 13 : 15}
+                onClick={() => {
+                    console.log('Map Clicked');
+                    removeClassFromElement(REUSABLE_CLASS_NAMES.ACTIVE_PROPERTY);
+                    setSelectedPropertyId(null)
+                    setClickedPropertyId(null); // clear clicked marker
+                    setHovered(false);
+                    setPropsHover(undefined);
+                }
+                } // Close InfoWindow on map click
                 onLoad={(map) => {
                     mapRef.current = map;
                 }}
@@ -142,15 +178,16 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
                     streetViewControl: true,
                     mapTypeControl: true,
                     fullscreenControl: true,
+                    gestureHandling: 'greedy'
                 }}
             >
-                <GroundOverlay
+                {/* <GroundOverlay
                     url="https://www.zillowstatic.com/floor_map/6ed2c5e0-9934-490d-b420-70bc605123bf/floor_shape/dd12d6fc57/compressed.svg" // Use public folder or remote URL
                     bounds={bounds}
                     opacity={0.7}
                     onLoad={() => {  }}
                     visible={true}
-                />
+                /> */}
                 {properties && properties?.map((item: any, index: any) => {
                     return <OverlayView
                         key={item?.id}
@@ -176,7 +213,24 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
                                 e?.preventDefault();
                                 removeClassFromElement(REUSABLE_CLASS_NAMES.ACTIVE_PROPERTY);
                                 addClassInElement(REUSABLE_CLASS_NAMES.ACTIVE_PROPERTY, e);
-                                onPropertySelect?.(item)
+                                onPropertySelect?.(item);
+                                setClickedPropertyId(item?.id);
+                                setHovered(true);
+                                if (isMobile) {
+                                    setPropsHover(item);
+                                    const scale = Math.pow(2, mapRef?.current?.getZoom()!);
+                                    const bounds = mapRef?.current?.getBounds();
+                                    const projection = mapRef?.current?.getProjection();
+                                    if (!bounds || !projection) return;
+
+                                    const topRight = projection.fromLatLngToPoint(bounds.getNorthEast());
+                                    const bottomLeft = projection.fromLatLngToPoint(bounds.getSouthWest());
+                                    const point = projection.fromLatLngToPoint({ lat: item?.latitude, lng: item?.longitude });
+
+                                    const x = (point!.x - bottomLeft!.x) * scale;
+                                    const y = (point!.y - topRight!.y) * scale;
+                                    setPosition({ x, y });
+                                }
                             }}
                             className='custom-marker animate-in' id={'marker-' + item?.id}>
                             {formatPrice(item?.price)}
@@ -186,7 +240,7 @@ export const PropertyGoogleMap: React.FC<PropertyMapProps> = ({
                 })}
             </GoogleMap>
             {hovered && propsHover &&
-                <MarkerHoverCard propsHover={propsHover} position={position} onPropertySelect={(propsHover: any) => { console.log(propsHover); onPropertySelect?.(propsHover) }} />
+                <Link href={`/property/${propsHover.id}`}><MarkerHoverCard propsHover={propsHover} position={position} onPropertySelect={(propsHover: any) => { console.log(propsHover); onPropertySelect?.(propsHover) }} /></Link>
             }
         </>
     );
