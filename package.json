@@ -69,7 +69,7 @@
     "lucide-react": "^0.446.0",
     "motion": "^12.4.3",
     "motion-plus": "^0.1.6",
-    "next": "15.1.6",
+    "next": "15.1.11",
     "next-auth": "^5.0.0-beta.25",
     "next-themes": "^0.4.6",
     "npm": "^11.1.0",
